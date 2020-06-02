@@ -9,19 +9,7 @@
 import SwiftUI
 import CoreLocation
 
-struct Coordinates: Hashable, Codable {
-    let latitude: Double
-    let longitude: Double
-}
-
 struct Landmark: Hashable, Codable, Identifiable {
-    
-    enum Category: String, CaseIterable, Codable, Hashable{
-        case featured = "Featured"
-        case lakes = "Lakes"
-        case rivers = "Rivers"
-    }
-    
     var id: Int
     var name: String
     fileprivate var imageName: String
@@ -29,16 +17,29 @@ struct Landmark: Hashable, Codable, Identifiable {
     var state: String
     var park: String
     var category: Category
+    var isFavorite: Bool
+
     var locationCoordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: coordinates.latitude,
-                                      longitude: coordinates.longitude)
+        CLLocationCoordinate2D(
+            latitude: coordinates.latitude,
+            longitude: coordinates.longitude)
     }
-    
-    var isFavorite : Bool
+
+    enum Category: String, CaseIterable, Codable, Hashable {
+        case featured = "Featured"
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+    }
 }
 
-extension Landmark{
+extension Landmark {
     var image: Image {
-        return ImageStore.shared.image(name: imageName)
+        ImageStore.shared.image(name: imageName)
     }
+}
+
+struct Coordinates: Hashable, Codable {
+    var latitude: Double
+    var longitude: Double
 }
