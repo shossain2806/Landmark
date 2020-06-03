@@ -1,10 +1,9 @@
-//
-//  CategoryRow.swift
-//  Landmarks
-//
-//  Created by Md. Saber Hossain on 3/6/20.
-//  Copyright © 2020 Md. Saber Hossain. All rights reserved.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A view showing a scrollable list of landmarks.
+*/
 
 import SwiftUI
 
@@ -63,4 +62,3 @@ struct CategoryRow_Previews: PreviewProvider {
         .environmentObject(UserData())
     }
 }
-

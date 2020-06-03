@@ -1,10 +1,9 @@
-//
-//  CategoryHome.swift
-//  Landmarks
-//
-//  Created by Md. Saber Hossain on 3/6/20.
-//  Copyright © 2020 Md. Saber Hossain. All rights reserved.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A view showing featured landmarks above a list of all of the landmarks.
+*/
 
 import SwiftUI
 
@@ -15,13 +14,13 @@ struct CategoryHome: View {
             by: { $0.category.rawValue }
         )
     }
-    
+
     var featured: [Landmark] {
         landmarkData.filter { $0.isFeatured }
     }
     
     @State var showingProfile = false
-    @EnvironmentObject var userData : UserData
+    @EnvironmentObject var userData: UserData
     
     var profileButton: some View {
         Button(action: { self.showingProfile.toggle() }) {
@@ -53,7 +52,8 @@ struct CategoryHome: View {
             .navigationBarTitle(Text("Featured"))
             .navigationBarItems(trailing: profileButton)
             .sheet(isPresented: $showingProfile) {
-                ProfileHost().environmentObject(self.userData)
+                ProfileHost()
+                    .environmentObject(self.userData)
             }
         }
     }
@@ -72,4 +72,3 @@ struct CategoryHome_Previews: PreviewProvider {
             .environmentObject(UserData())
     }
 }
-
